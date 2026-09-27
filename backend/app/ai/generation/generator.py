@@ -6,7 +6,6 @@ from google import genai
 from google.genai import types
 from google.genai import errors
 
-
 load_dotenv("backend/.env")
 
 API_KEY = os.getenv("GEMINI_API_KEY")
@@ -24,27 +23,71 @@ Answer the user's question using ONLY the provided BIS evidence.
 
 Rules:
 1. Do not invent BIS standards, clauses, certification requirements, or facts.
-2. If the evidence does not contain enough information, do not invent the missing information.
 
-   If the evidence provides partial information, explain what CAN be verified first, then clearly state what could not be verified.
+2. If the evidence does not contain enough information, do not invent the
+missing information.
 
-   Use wording such as:
-   "The available BIS sources do not provide a complete checklist for this. However, they confirm that..."
+3. If the evidence provides partial information, explain what CAN be verified
+first, then clearly state what could not be verified.
 
-   Only use:
-   "I couldn't verify this from the available BIS sources."
-   when the evidence genuinely provides no useful answer.
-3. Distinguish between:
+4. Distinguish between:
    - an Indian Standard existing
    - BIS certification being applicable
    - compulsory certification under a government Quality Control Order (QCO)
-4. Keep answers clear and practical.
-5. Mention the relevant source information when available.
-6. Do not claim that a product requires mandatory certification unless the evidence supports it.
-7. Respond in the same language as the user's question.
-8. Support English, Hindi, and Hinglish.
-9. Keep Indian Standard numbers, BIS terminology, QCO names, and technical identifiers unchanged.
+
+5. Keep answers clear and practical.
+
+6. Mention relevant source information when available.
+
+7. Do not claim that a product requires mandatory certification unless the
+evidence supports it.
+
+8. Respond in the same language as the user's question.
+
+9. Support English, Hindi, and Hinglish.
+
+10. Keep Indian Standard numbers, BIS terminology, QCO names, and technical
+identifiers unchanged.
 """
+
+
+def fallback_answer(question: str, retrieved_chunks):
+    """
+    Used when Gemini generation is unavailable, for example because
+    the Gemini API quota has been exhausted.
+
+    This keeps the RAG demo functional by returning the retrieved
+    BIS evidence directly instead of inventing an answer.
+    """
+
+    if not retrieved_chunks:
+        return (
+            "I couldn't verify this from the available BIS sources."
+        )
+
+    lines = [
+        "Gemini generation is temporarily unavailable, but I found "
+        "the following verified BIS evidence:"
+    ]
+
+    for i, chunk in enumerate(retrieved_chunks[:3], start=1):
+
+        content = chunk.content.strip()
+
+        # Keep the fallback concise.
+        if len(content) > 900:
+            content = content[:900].rsplit(" ", 1)[0] + "..."
+
+        lines.append(
+            f"\n[Source {i}] {chunk.title}\n{content}"
+        )
+
+    lines.append(
+        "\nThis response is based directly on the retrieved BIS "
+        "evidence and does not add information that could not be verified."
+    )
+
+    return "\n".join(lines)
 
 
 def generate_answer(question: str, retrieved_chunks):
@@ -80,9 +123,11 @@ When making factual claims, cite the relevant source as [Source N].
 Do not create citations that are not present in the evidence.
 """
 
-    # Retry temporary Gemini 503 errors
+    # Try Gemini generation.
     for attempt in range(3):
+
         try:
+
             response = client.models.generate_content(
                 model="gemini-3.8-flash",
                 contents=prompt,
@@ -95,10 +140,10 @@ Do not create citations that are not present in the evidence.
 
             return response.text
 
-        except errors.ServerError as e:
+        except errors.ServerError:
 
             if attempt == 2:
-                raise
+                break
 
             wait_time = 2 ** attempt
 
@@ -109,4 +154,32 @@ Do not create citations that are not present in the evidence.
 
             time.sleep(wait_time)
 
-    raise RuntimeError("Gemini generation failed after retries.")
+        except errors.ClientError as e:
+
+            # 429 = Gemini quota/rate limit exhausted.
+            if getattr(e, "code", None) == 429:
+
+                print(
+                    "⚠️ Gemini quota exhausted. "
+                    "Using grounded BIS fallback response."
+                )
+
+                return fallback_answer(
+                    question,
+                    retrieved_chunks,
+                )
+
+            # Any other client error should still be visible.
+            raise
+
+    # If all temporary Gemini retries failed,
+    # keep the application usable.
+    print(
+        "⚠️ Gemini generation unavailable. "
+        "Using grounded BIS fallback response."
+    )
+
+    return fallback_answer(
+        question,
+        retrieved_chunks,
+    )
