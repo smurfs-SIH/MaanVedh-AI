@@ -22,7 +22,6 @@ class ChatResponse(BaseModel):
 
 
 def chat(request: ChatRequest):
-
     results = search_chunks(
         request.question,
         limit=5,
@@ -33,18 +32,32 @@ def chat(request: ChatRequest):
         results,
     )
 
-    sources = [
-        Source(
-            title=result.title,
-            source_name=result.source_name,
-            source_url=result.source_url,
-            page_number=result.page_number,
-            similarity=float(result.similarity),
+    # Remove duplicate source documents
+    unique_sources = []
+    seen = set()
+
+    for result in results:
+        key = (
+            result.title,
+            result.source_url,
         )
-        for result in results
-    ]
+
+        if key in seen:
+            continue
+
+        seen.add(key)
+
+        unique_sources.append(
+            Source(
+                title=result.title,
+                source_name=result.source_name,
+                source_url=result.source_url,
+                page_number=result.page_number,
+                similarity=float(result.similarity),
+            )
+        )
 
     return ChatResponse(
         answer=answer,
-        sources=sources,
+        sources=unique_sources,
     )
