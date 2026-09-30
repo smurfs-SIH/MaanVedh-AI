@@ -42,7 +42,7 @@ export function StandardCard({ standard }: StandardCardProps) {
           className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-3 py-2 text-sm font-semibold text-white transition hover:bg-blue-500"
         >
           <MessageSquare size={16} />
-          Ask PraMaan AI
+          Ask MaanVedh-AI
         </Link>
       </div>
 

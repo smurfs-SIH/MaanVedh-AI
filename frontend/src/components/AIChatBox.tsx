@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { LoaderCircle, MessageSquareText, SendHorizonal, Sparkles, Trash2 } from 'lucide-react'
+import { MarkdownMessage } from './MarkdownMessage'
 import { buildAiResponse, initialMessages, suggestedQuestions, type ChatMessage } from '../services/chat'
 
 export function AIChatBox() {
@@ -34,7 +35,7 @@ export function AIChatBox() {
             <Sparkles size={18} />
           </div>
           <div>
-            <h3 className="text-base font-semibold text-slate-900">PraMaan AI Assistant</h3>
+            <h3 className="text-base font-semibold text-slate-900">MaanVedh-AI Assistant</h3>
             <p className="text-xs text-slate-500">{recentMessageCount} messages</p>
           </div>
         </div>
@@ -59,7 +60,11 @@ export function AIChatBox() {
                   : 'border border-slate-200 bg-slate-50 text-slate-700'
               }`}
             >
-              <p className="text-sm leading-6">{message.text}</p>
+              {message.sender === 'ai' ? (
+                <MarkdownMessage content={message.text} />
+              ) : (
+                <p className="text-sm leading-6">{message.text}</p>
+              )}
               {message.standard && (
                 <div className="mt-3 rounded-xl border border-slate-200 bg-white p-3 text-left text-slate-700">
                   <p className="text-xs uppercase tracking-[0.1em] text-slate-500">Relevant Standard</p>
@@ -84,7 +89,7 @@ export function AIChatBox() {
           <div className="flex justify-start">
             <div className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
               <LoaderCircle className="animate-spin" size={16} />
-              PraMaan AI is thinking...
+              MaanVedh-AI is thinking...
             </div>
           </div>
         )}
@@ -107,7 +112,7 @@ export function AIChatBox() {
         <div className="flex items-end gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-2">
           <MessageSquareText className="ml-2 h-5 w-5 text-slate-400" />
           <textarea
-            aria-label="Ask PraMaan AI"
+            aria-label="Ask MaanVedh-AI"
             rows={1}
             value={query}
             onChange={(event) => setQuery(event.target.value)}

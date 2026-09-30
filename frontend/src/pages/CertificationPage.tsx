@@ -88,7 +88,7 @@ export function CertificationPage() {
           </ul>
 
           <button type="button" className="mt-6 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white">
-            Ask PraMaan AI about this process
+            Ask MaanVedh-AI about this process
           </button>
         </div>
       </div>

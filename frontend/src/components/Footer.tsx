@@ -5,7 +5,7 @@ export function Footer() {
     <footer className="border-t border-slate-200 bg-slate-900 text-slate-200">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div>
-          <div className="text-lg font-bold text-white">PraMaan AI</div>
+          <div className="text-lg font-bold text-white">MaanVedh-AI</div>
           <p className="mt-3 text-sm text-slate-300">
             Intelligent support for Indian Standards, BIS certification, testing labs, and reliable product compliance guidance.
           </p>
@@ -32,7 +32,7 @@ export function Footer() {
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-[0.12em] text-slate-400">Disclaimer</h3>
           <p className="mt-4 text-sm text-slate-300">
-            PraMaan AI simplifies standards information. Always refer to official BIS documents for regulatory decisions.
+            MaanVedh-AI simplifies standards information. Always refer to official BIS documents for regulatory decisions.
           </p>
         </div>
       </div>

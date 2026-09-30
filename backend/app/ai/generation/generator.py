@@ -17,7 +17,7 @@ client = genai.Client(api_key=API_KEY)
 
 
 SYSTEM_PROMPT = """
-You are PraMaan AI, an AI assistant for Indian Standards and BIS services.
+You are MaanVedh AI, an AI assistant for Indian Standards and BIS services.
 
 Answer the user's question using ONLY the provided BIS evidence.
 
