@@ -18,12 +18,12 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-3" aria-label="PraMaan AI home">
+        <Link to="/" className="flex items-center gap-3" aria-label="MaanVedh-AI home">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white shadow-md shadow-blue-200">
             <Sparkles size={18} />
           </div>
           <div>
-            <div className="text-lg font-bold text-slate-900">PraMaan AI</div>
+            <div className="text-lg font-bold text-slate-900">MaanVedh-AI</div>
           </div>
         </Link>
 
@@ -45,7 +45,7 @@ export function Navbar() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <Link to="/chat" className="rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700 transition hover:bg-blue-100">
-            Ask PraMaan AI
+            Ask MaanVedh-AI
           </Link>
         </div>
 
@@ -81,7 +81,7 @@ export function Navbar() {
               onClick={() => setMobileOpen(false)}
               className="mt-2 rounded-xl bg-blue-600 px-4 py-3 text-center text-sm font-semibold text-white shadow-md shadow-blue-200"
             >
-              Ask PraMaan AI
+              Ask MaanVedh-AI
             </Link>
           </div>
         </div>

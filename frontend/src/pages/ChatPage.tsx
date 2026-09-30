@@ -7,7 +7,7 @@ export function ChatPage() {
     <div className="space-y-8 pb-16">
       <PageHeader
         badge="AI Assistant"
-        title="Ask PraMaan AI"
+        title="Ask MaanVedh-AI"
         subtitle="Get clear answers about Indian Standards, BIS processes, testing labs, and certification steps."
       />
 

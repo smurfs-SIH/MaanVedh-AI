@@ -21,7 +21,7 @@ export const initialMessages: ChatMessage[] = [
     sender: 'ai',
     text:
       'Hello! I can help you understand Indian Standards, BIS certification, testing labs, and hallmarking requirements. Ask me anything about your product or process.',
-    citations: ['[1] BIS', '[2] PraMaan AI'],
+    citations: ['[1] BIS', '[2] MaanVedh-AI'],
   },
   {
     id: 'example-user',

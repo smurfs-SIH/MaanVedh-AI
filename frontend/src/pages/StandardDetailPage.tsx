@@ -47,7 +47,7 @@ export function StandardDetailPage() {
             </button>
             <button type="button" className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-3 py-2.5 text-sm font-semibold text-white">
               <MessageSquareText size={16} />
-              Ask PraMaan AI
+              Ask MaanVedh-AI
             </button>
           </div>
         </div>
@@ -129,7 +129,7 @@ export function StandardDetailPage() {
           <div className="mt-5 flex flex-wrap gap-3">
             <button type="button" className="rounded-xl bg-slate-900 px-3 py-2 text-sm font-semibold text-white">View Official Source</button>
             <button type="button" className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700">
-              Ask PraMaan AI about this standard
+              Ask MaanVedh-AI about this standard
             </button>
           </div>
         </div>

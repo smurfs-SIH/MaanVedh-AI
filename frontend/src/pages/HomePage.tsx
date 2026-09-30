@@ -54,7 +54,7 @@ export function HomePage() {
                 />
               </div>
               <Link to="/chat" className="inline-flex items-center justify-center rounded-2xl bg-blue-600 px-5 py-3.5 text-sm font-semibold text-white shadow-md shadow-blue-200 transition hover:bg-blue-500">
-                Ask PraMaan AI
+                Ask MaanVedh-AI
               </Link>
             </div>
 
@@ -75,7 +75,7 @@ export function HomePage() {
               </div>
               <p className="mt-5 text-2xl font-semibold">“I manufacture packaged drinking water...”</p>
               <p className="mt-4 text-sm text-slate-300">
-                PraMaan AI can identify the relevant standard, highlight the applicable certification process, and guide you to the right lab or evidence source.
+                MaanVedh-AI can identify the relevant standard, highlight the applicable certification process, and guide you to the right lab or evidence source.
               </p>
 
               <div className="mt-6 rounded-2xl bg-white/5 p-4">
@@ -100,7 +100,7 @@ export function HomePage() {
       <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
         <div className="flex items-center justify-between gap-3">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.12em] text-blue-700">How PraMaan AI Helps</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.12em] text-blue-700">How MaanVedh-AI Helps</p>
             <h2 className="mt-2 text-2xl font-bold text-slate-900">From question to confident action</h2>
           </div>
         </div>
@@ -145,7 +145,7 @@ export function HomePage() {
         </div>
 
         <div className="mt-6 rounded-2xl border border-slate-200 bg-white/70 p-4 text-sm text-slate-600">
-          PraMaan AI simplifies standards information. Always refer to official BIS documents for regulatory decisions.
+          MaanVedh-AI simplifies standards information. Always refer to official BIS documents for regulatory decisions.
         </div>
       </section>
     </div>

@@ -68,7 +68,7 @@ export function HallmarkingPage() {
       </div>
 
       <div className="flex justify-center">
-        <button type="button" className="rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white">Ask PraMaan AI</button>
+        <button type="button" className="rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white">Ask MaanVedh-AI</button>
       </div>
     </div>
   )
