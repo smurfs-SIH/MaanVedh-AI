@@ -1,4 +1,4 @@
-PraMaan AI
+MaanVedh AI
 AI-powered Intelligent Assistant for
 Indian Standards & BIS Services
 
